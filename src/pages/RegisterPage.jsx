@@ -6,11 +6,14 @@ export default function RegisterPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [editRow, setEditRow] = useState(null);
 
+  // URL del backend en Render
+  const API_URL = 'https://backend-vehiculos-reportes.onrender.com/api/reports';
+
   // Cargar datos desde la BD al iniciar
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/reports');
+        const res = await fetch(API_URL);
         const reports = await res.json();
         setData(reports);
       } catch (err) {
@@ -34,7 +37,7 @@ export default function RegisterPage() {
     };
 
     try {
-      const res = await fetch('http://localhost:4000/api/reports', {
+      const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newRow),
@@ -67,7 +70,7 @@ export default function RegisterPage() {
     e.preventDefault();
     const id = data[selectedIndex].id;
     try {
-      const res = await fetch(`http://localhost:4000/api/reports/${id}`, {
+      const res = await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editRow),
@@ -88,7 +91,7 @@ export default function RegisterPage() {
     if (selectedIndex === null) return;
     const id = data[selectedIndex].id;
     try {
-      await fetch(`http://localhost:4000/api/reports/${id}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
       const updated = data.filter((_, i) => i !== selectedIndex);
       setData(updated);
       setSelectedIndex(null);
@@ -158,9 +161,9 @@ export default function RegisterPage() {
                 <td>{row.no_econ}</td>
                 <td>{row.usuario}</td>
                 <td>{row.destino}</td>
-                <td>{row.salida}</td> {/* 👀 se muestra tal cual */}
-                <td>{row.entrada}</td> {/* 👀 se muestra tal cual */}
-                <td>{formatFecha(row.fecha)}</td> {/* 👀 fecha normalizada */}
+                <td>{row.salida}</td>
+                <td>{row.entrada}</td>
+                <td>{formatFecha(row.fecha)}</td>
               </tr>
             ))}
           </tbody>
