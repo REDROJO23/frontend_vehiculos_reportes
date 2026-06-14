@@ -1,0 +1,260 @@
+/* ====== ESTILOS PÁGINA 2 ====== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('./imagen-de-fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.title {
+  background: black;
+  color: rgb(255, 196, 3);
+  text-align: center;
+  padding: 25px;
+  font-size: 40px;
+  font-weight: bold;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.page {
+  display: flex;
+  justify-content: flex-start; /* más pegado */
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 120px;
+  box-sizing: border-box;
+}
+
+.form-section {
+  flex: 1;
+  margin-left: 14px;
+  color: rgb(252, 198, 20);
+}
+.form-section label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.form-section input {
+  width: 70%;
+  padding: 7px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.table-section {
+  flex: 2.5;
+  margin-left: 0px; /* más cerca del formulario */
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  color: rgb(49, 48, 48);
+}
+.table th {
+  background: rgb(44, 44, 44);
+  color: rgb(252, 194, 5);
+}
+.table tr.selected {
+  background-color: #f0b30e; /* resalta fila seleccionada */
+}
+
+.table-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.btn-anim {
+  background: orange;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.5s;
+  cursor: pointer;
+  font-size: 16px;
+}
+.btn-anim:hover {
+  background: purple;
+}
+
+/* ====== Ventana modal de edición ====== */
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  z-index: 2000;
+}
+
+.edit-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.edit-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: black;
+}
+.edit-form input {
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.edit-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ====== RESPONSIVIDAD ====== */
+@media (max-width: 900px) {
+  .page {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-section, .table-section {
+    margin: 20px 0;
+    width: 90%;
+  }
+}
+
+/* ====== TEMA OSCURO PARA EL FORMULARIO MODAL ====== */
+
+.edit-form {
+  background-color: #383737; /* gris negro oscuro */
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* Etiquetas en amarillo */
+.edit-form label {
+  color: rgb(255, 200, 18);
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Campos de texto: fondo blanco, letra negra */
+.edit-form input {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 7px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* Botones dentro del modal */
+.edit-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* ====== AJUSTE DE ANCHO DE CELDAS EN TABLA PÁGINA 2 ====== */
+
+/* Ajuste general de la tabla */
+.table {
+  table-layout: fixed;   /* fuerza ancho fijo */
+  width: 100%;           /* ocupa todo el espacio disponible */
+}
+
+/* Ajuste de columnas específicas */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 8%; /* No.econ */
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 30%; /* Usuario */
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 30%; /* Destino */
+}
+
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  width: 10%; /* Salida */
+}
+
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 10%; /* Entrada */
+}
+
+.table th:nth-child(6),
+.table td:nth-child(6) {
+  width: 10%; /* Fecha */
+}
+
+/* Ajuste de texto para que no se desborde */
+.table th, .table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ====== REDUCCIÓN DE TAMAÑO DE LETRA EN TABLAS ====== */
+
+/* Encabezados de la tabla */
+.table th {
+  font-size: 0.85rem;   /* tamaño más pequeño */
+  font-weight: bold;    /* mantiene negrita */
+  padding: 6px 8px;     /* ajusta espacio interno */
+}
+
+/* Datos de la tabla */
+.table td {
+  font-size: 0.8rem;    /* tamaño reducido */
+  padding: 6px 8px;     /* ajusta espacio interno */
+}
+
+/* Opcional: reducir aún más si la tabla es muy grande */
+.table {
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  line-height: 1.2;     /* reduce altura de fila */
+}
