@@ -10,13 +10,12 @@ export default function ReportsPage() {
   // URL del backend en Render
   const API_URL = 'https://backend-vehiculos-reportes.onrender.com/api/reports';
 
-  // Función para formatear fecha a DD/MM/YYYY
+  // Función para formatear fecha a DD/MM/YYYY sin desfase
   const formatFecha = (valor) => {
     if (!valor) return '';
-    const fechaObj = new Date(valor);
-    const dia = String(fechaObj.getDate()).padStart(2, '0');
-    const mes = String(fechaObj.getMonth() + 1).padStart(2, '0');
-    const anio = fechaObj.getFullYear();
+    // Si viene como "YYYY-MM-DD" o "YYYY-MM-DDTHH:mm:ss"
+    const soloFecha = valor.split('T')[0]; 
+    const [anio, mes, dia] = soloFecha.split('-');
     return `${dia}/${mes}/${anio}`;
   };
 
