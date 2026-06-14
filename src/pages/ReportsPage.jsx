@@ -7,6 +7,9 @@ export default function ReportsPage() {
   const [reports, setReports] = useState([]);
   const navigate = useNavigate();
 
+  // URL del backend en Render
+  const API_URL = 'https://backend-vehiculos-reportes.onrender.com/api/reports';
+
   // Función para formatear fecha a DD/MM/YYYY
   const formatFecha = (valor) => {
     if (!valor) return '';
@@ -19,7 +22,7 @@ export default function ReportsPage() {
 
   // Cargar datos desde el backend
   useEffect(() => {
-    axios.get('http://localhost:4000/api/reports')
+    axios.get(API_URL)
       .then(res => setReports(res.data))
       .catch(err => console.error("Error al cargar reportes:", err));
   }, []);
@@ -48,7 +51,7 @@ export default function ReportsPage() {
                 <td>{r.destino}</td>
                 <td>{r.salida}</td>
                 <td>{r.entrada}</td>
-                <td>{formatFecha(r.fecha)}</td> {/* 👀 fecha formateada */}
+                <td>{formatFecha(r.fecha)}</td>
               </tr>
             ))}
           </tbody>
