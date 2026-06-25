@@ -9,6 +9,16 @@ export default function RegisterPage() {
   // URL del backend en Render
   const API_URL = 'https://backend-vehiculos-reportes.onrender.com/api/reports';
 
+  // Función para que Enter mueva al siguiente input
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // evita enviar el formulario
+      const form = e.target.form;
+      const index = Array.prototype.indexOf.call(form, e.target);
+      form.elements[index + 1]?.focus(); // pasa al siguiente campo
+    }
+  };
+
   // Cargar datos desde la BD al iniciar
   useEffect(() => {
     const fetchData = async () => {
@@ -114,22 +124,22 @@ export default function RegisterPage() {
       <div className="form-section">
         <form id="form-register" onSubmit={addRow}>
           <label>No.econ</label>
-          <input type="text" name="no_econ" required />
+          <input type="text" name="no_econ" required onKeyDown={handleEnter} />
 
           <label>Usuario</label>
-          <input type="text" name="usuario" required />
+          <input type="text" name="usuario" required onKeyDown={handleEnter} />
 
           <label>Destino</label>
-          <input type="text" name="destino" required />
+          <input type="text" name="destino" required onKeyDown={handleEnter} />
 
           <label>Salida</label>
-          <input type="text" name="salida" required />
+          <input type="text" name="salida" required onKeyDown={handleEnter} />
 
           <label>Entrada</label>
-          <input type="text" name="entrada" required />
+          <input type="text" name="entrada" required onKeyDown={handleEnter} />
 
           <label>Fecha</label>
-          <input type="date" name="fecha" required />
+          <input type="date" name="fecha" required onKeyDown={handleEnter} />
 
           <div className="form-buttons">
             <button type="submit" className="btn-anim">Guardar</button>
@@ -180,22 +190,22 @@ export default function RegisterPage() {
         <div className="edit-modal">
           <form onSubmit={saveEdit} className="edit-form">
             <label>No.econ</label>
-            <input type="text" value={editRow.no_econ} onChange={(e) => setEditRow({ ...editRow, no_econ: e.target.value })} />
+            <input type="text" value={editRow.no_econ} onChange={(e) => setEditRow({ ...editRow, no_econ: e.target.value })} onKeyDown={handleEnter} />
 
             <label>Usuario</label>
-            <input type="text" value={editRow.usuario} onChange={(e) => setEditRow({ ...editRow, usuario: e.target.value })} />
+            <input type="text" value={editRow.usuario} onChange={(e) => setEditRow({ ...editRow, usuario: e.target.value })} onKeyDown={handleEnter} />
 
             <label>Destino</label>
-            <input type="text" value={editRow.destino} onChange={(e) => setEditRow({ ...editRow, destino: e.target.value })} />
+            <input type="text" value={editRow.destino} onChange={(e) => setEditRow({ ...editRow, destino: e.target.value })} onKeyDown={handleEnter} />
 
             <label>Salida</label>
-            <input type="text" value={editRow.salida} onChange={(e) => setEditRow({ ...editRow, salida: e.target.value })} />
+            <input type="text" value={editRow.salida} onChange={(e) => setEditRow({ ...editRow, salida: e.target.value })} onKeyDown={handleEnter} />
 
             <label>Entrada</label>
-            <input type="text" value={editRow.entrada} onChange={(e) => setEditRow({ ...editRow, entrada: e.target.value })} />
+            <input type="text" value={editRow.entrada} onChange={(e) => setEditRow({ ...editRow, entrada: e.target.value })} onKeyDown={handleEnter} />
 
             <label>Fecha</label>
-            <input type="date" value={formatFecha(editRow.fecha)} onChange={(e) => setEditRow({ ...editRow, fecha: e.target.value })} />
+            <input type="date" value={formatFecha(editRow.fecha)} onChange={(e) => setEditRow({ ...editRow, fecha: e.target.value })} onKeyDown={handleEnter} />
 
             <div className="form-buttons">
               <button type="submit" className="btn-anim">Guardar cambios</button>
